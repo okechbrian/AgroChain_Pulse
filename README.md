@@ -69,13 +69,8 @@ go run main.go
 
 ```bash
 cd java
-# Requires Maven + Java 17
-mvn compile exec:java -Dexec.mainClass="com.agrochain.pulse.ECTLedger"
-```
-
-**Or run the Spring Boot app:**
-```bash
-mvn spring-boot:run
+javac ECTDemo.java
+java ECTDemo
 ```
 
 **Features:**
@@ -138,7 +133,7 @@ start frontend/index.html
 | YPS ML Model | `python/yps_model.py` | ✅ |
 | Blockchain-lite (Python) | `python/blockchain_lite.py` | ✅ |
 | Blockchain-lite (Go) | `go/main.go` | ✅ |
-| ECT Ledger (Java) | `java/.../PulseApplication.java` | ✅ |
+| ECT Ledger (Java) | `java/ECTDemo.java` | ✅ |
 | Dashboard | `frontend/index.html` | ✅ |
 
 ---

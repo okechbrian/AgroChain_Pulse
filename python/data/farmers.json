@@ -1,0 +1,452 @@
+[
+  {
+    "farmer_id": "FAR001",
+    "name": "John",
+    "region": "Jinja",
+    "gps_lat": 2.885473,
+    "gps_lon": 34.653208,
+    "crop_type": "beans",
+    "farm_size_hectares": 0.67
+  },
+  {
+    "farmer_id": "FAR002",
+    "name": "Mary",
+    "region": "Lira",
+    "gps_lat": 0.850338,
+    "gps_lon": 33.793779,
+    "crop_type": "beans",
+    "farm_size_hectares": 2.15
+  },
+  {
+    "farmer_id": "FAR003",
+    "name": "Peter",
+    "region": "Kabale",
+    "gps_lat": 3.932046,
+    "gps_lon": 33.332842,
+    "crop_type": "sorghum",
+    "farm_size_hectares": 3.44
+  },
+  {
+    "farmer_id": "FAR004",
+    "name": "Sarah",
+    "region": "Jinja",
+    "gps_lat": 3.389294,
+    "gps_lon": 31.513087,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 3.19
+  },
+  {
+    "farmer_id": "FAR005",
+    "name": "James",
+    "region": "Mbarara",
+    "gps_lat": 0.68668,
+    "gps_lon": 30.019077,
+    "crop_type": "beans",
+    "farm_size_hectares": 3.32
+  },
+  {
+    "farmer_id": "FAR006",
+    "name": "Grace",
+    "region": "Lira",
+    "gps_lat": 2.149744,
+    "gps_lon": 32.096668,
+    "crop_type": "cassava",
+    "farm_size_hectares": 2.02
+  },
+  {
+    "farmer_id": "FAR007",
+    "name": "David",
+    "region": "Gulu",
+    "gps_lat": 0.631965,
+    "gps_lon": 33.49251,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 3.94
+  },
+  {
+    "farmer_id": "FAR008",
+    "name": "Agnes",
+    "region": "Kabale",
+    "gps_lat": 3.457627,
+    "gps_lon": 32.869552,
+    "crop_type": "beans",
+    "farm_size_hectares": 2.89
+  },
+  {
+    "farmer_id": "FAR009",
+    "name": "Michael",
+    "region": "Kabale",
+    "gps_lat": 0.124055,
+    "gps_lon": 32.207438,
+    "crop_type": "banana",
+    "farm_size_hectares": 0.96
+  },
+  {
+    "farmer_id": "FAR010",
+    "name": "Florence",
+    "region": "Jinja",
+    "gps_lat": 3.886041,
+    "gps_lon": 33.18569,
+    "crop_type": "cassava",
+    "farm_size_hectares": 4.79
+  },
+  {
+    "farmer_id": "FAR011",
+    "name": "Robert",
+    "region": "Mbarara",
+    "gps_lat": 4.18462,
+    "gps_lon": 33.471763,
+    "crop_type": "banana",
+    "farm_size_hectares": 4.75
+  },
+  {
+    "farmer_id": "FAR012",
+    "name": "Janet",
+    "region": "Mbarara",
+    "gps_lat": 1.427445,
+    "gps_lon": 30.796356,
+    "crop_type": "sorghum",
+    "farm_size_hectares": 4.28
+  },
+  {
+    "farmer_id": "FAR013",
+    "name": "William",
+    "region": "Masaka",
+    "gps_lat": 0.136476,
+    "gps_lon": 33.750875,
+    "crop_type": "coffee",
+    "farm_size_hectares": 1.98
+  },
+  {
+    "farmer_id": "FAR014",
+    "name": "Margaret",
+    "region": "Gulu",
+    "gps_lat": 0.063209,
+    "gps_lon": 30.749896,
+    "crop_type": "maize",
+    "farm_size_hectares": 4.69
+  },
+  {
+    "farmer_id": "FAR015",
+    "name": "George",
+    "region": "Gulu",
+    "gps_lat": 0.207921,
+    "gps_lon": 30.8435,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 1.31
+  },
+  {
+    "farmer_id": "FAR016",
+    "name": "Florence",
+    "region": "Soroti",
+    "gps_lat": 1.765933,
+    "gps_lon": 30.65585,
+    "crop_type": "cassava",
+    "farm_size_hectares": 0.98
+  },
+  {
+    "farmer_id": "FAR017",
+    "name": "Charles",
+    "region": "Kampala",
+    "gps_lat": 1.325065,
+    "gps_lon": 29.681579,
+    "crop_type": "cassava",
+    "farm_size_hectares": 4.86
+  },
+  {
+    "farmer_id": "FAR018",
+    "name": "Catherine",
+    "region": "Soroti",
+    "gps_lat": 0.070537,
+    "gps_lon": 33.144092,
+    "crop_type": "coffee",
+    "farm_size_hectares": 0.88
+  },
+  {
+    "farmer_id": "FAR019",
+    "name": "Daniel",
+    "region": "Gulu",
+    "gps_lat": 1.232439,
+    "gps_lon": 29.877657,
+    "crop_type": "cassava",
+    "farm_size_hectares": 3.25
+  },
+  {
+    "farmer_id": "FAR020",
+    "name": "Ruth",
+    "region": "Gulu",
+    "gps_lat": 0.108834,
+    "gps_lon": 34.078296,
+    "crop_type": "beans",
+    "farm_size_hectares": 4.13
+  },
+  {
+    "farmer_id": "FAR021",
+    "name": "Joseph",
+    "region": "Soroti",
+    "gps_lat": 0.271324,
+    "gps_lon": 29.964242,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 2.75
+  },
+  {
+    "farmer_id": "FAR022",
+    "name": "Beacon",
+    "region": "Mbarara",
+    "gps_lat": 3.350342,
+    "gps_lon": 34.532618,
+    "crop_type": "maize",
+    "farm_size_hectares": 1.02
+  },
+  {
+    "farmer_id": "FAR023",
+    "name": "Thomas",
+    "region": "Mbarara",
+    "gps_lat": 0.905309,
+    "gps_lon": 32.337135,
+    "crop_type": "coffee",
+    "farm_size_hectares": 0.74
+  },
+  {
+    "farmer_id": "FAR024",
+    "name": "Esther",
+    "region": "Soroti",
+    "gps_lat": 3.407747,
+    "gps_lon": 30.567446,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 1.66
+  },
+  {
+    "farmer_id": "FAR025",
+    "name": "Andrew",
+    "region": "Soroti",
+    "gps_lat": 3.840586,
+    "gps_lon": 32.904876,
+    "crop_type": "banana",
+    "farm_size_hectares": 2.8
+  },
+  {
+    "farmer_id": "FAR026",
+    "name": "Judith",
+    "region": "Soroti",
+    "gps_lat": 1.699538,
+    "gps_lon": 30.746968,
+    "crop_type": "cassava",
+    "farm_size_hectares": 2.05
+  },
+  {
+    "farmer_id": "FAR027",
+    "name": "Paul",
+    "region": "Masaka",
+    "gps_lat": 3.425591,
+    "gps_lon": 30.888915,
+    "crop_type": "maize",
+    "farm_size_hectares": 1.52
+  },
+  {
+    "farmer_id": "FAR028",
+    "name": "Lucy",
+    "region": "Kabale",
+    "gps_lat": 1.814585,
+    "gps_lon": 29.896149,
+    "crop_type": "sorghum",
+    "farm_size_hectares": 3.89
+  },
+  {
+    "farmer_id": "FAR029",
+    "name": "Stephen",
+    "region": "Kabale",
+    "gps_lat": -0.025268,
+    "gps_lon": 31.671215,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 4.18
+  },
+  {
+    "farmer_id": "FAR030",
+    "name": "Mercy",
+    "region": "Mbarara",
+    "gps_lat": -0.442943,
+    "gps_lon": 33.379626,
+    "crop_type": "coffee",
+    "farm_size_hectares": 1.95
+  },
+  {
+    "farmer_id": "FAR031",
+    "name": "Francis",
+    "region": "Lira",
+    "gps_lat": 1.729335,
+    "gps_lon": 30.648894,
+    "crop_type": "banana",
+    "farm_size_hectares": 3.29
+  },
+  {
+    "farmer_id": "FAR032",
+    "name": "Dorothy",
+    "region": "Mbarara",
+    "gps_lat": 2.765148,
+    "gps_lon": 30.204235,
+    "crop_type": "beans",
+    "farm_size_hectares": 4.41
+  },
+  {
+    "farmer_id": "FAR033",
+    "name": "Patrick",
+    "region": "Jinja",
+    "gps_lat": 1.199731,
+    "gps_lon": 31.775593,
+    "crop_type": "banana",
+    "farm_size_hectares": 4.47
+  },
+  {
+    "farmer_id": "FAR034",
+    "name": "Rose",
+    "region": "Kampala",
+    "gps_lat": -1.453043,
+    "gps_lon": 31.684848,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 1.38
+  },
+  {
+    "farmer_id": "FAR035",
+    "name": "Martin",
+    "region": "Kampala",
+    "gps_lat": 2.472813,
+    "gps_lon": 34.206786,
+    "crop_type": "coffee",
+    "farm_size_hectares": 2.73
+  },
+  {
+    "farmer_id": "FAR036",
+    "name": "Florence",
+    "region": "Soroti",
+    "gps_lat": 0.012583,
+    "gps_lon": 29.956946,
+    "crop_type": "beans",
+    "farm_size_hectares": 2.48
+  },
+  {
+    "farmer_id": "FAR037",
+    "name": "Simon",
+    "region": "Soroti",
+    "gps_lat": 3.155469,
+    "gps_lon": 34.616889,
+    "crop_type": "cassava",
+    "farm_size_hectares": 4.29
+  },
+  {
+    "farmer_id": "FAR038",
+    "name": "Alice",
+    "region": "Mbarara",
+    "gps_lat": 3.97421,
+    "gps_lon": 30.999233,
+    "crop_type": "beans",
+    "farm_size_hectares": 4.05
+  },
+  {
+    "farmer_id": "FAR039",
+    "name": "Emmanuel",
+    "region": "Lira",
+    "gps_lat": 2.32986,
+    "gps_lon": 29.934697,
+    "crop_type": "coffee",
+    "farm_size_hectares": 0.62
+  },
+  {
+    "farmer_id": "FAR040",
+    "name": "Christine",
+    "region": "Mbarara",
+    "gps_lat": 0.241456,
+    "gps_lon": 33.990247,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 3.6
+  },
+  {
+    "farmer_id": "FAR041",
+    "name": "Samuel",
+    "region": "Soroti",
+    "gps_lat": 3.780507,
+    "gps_lon": 30.625453,
+    "crop_type": "maize",
+    "farm_size_hectares": 3.06
+  },
+  {
+    "farmer_id": "FAR042",
+    "name": "Joan",
+    "region": "Mbarara",
+    "gps_lat": -0.547888,
+    "gps_lon": 30.242844,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 1.24
+  },
+  {
+    "farmer_id": "FAR043",
+    "name": "Richard",
+    "region": "Masaka",
+    "gps_lat": -0.166533,
+    "gps_lon": 32.167983,
+    "crop_type": "beans",
+    "farm_size_hectares": 1.09
+  },
+  {
+    "farmer_id": "FAR044",
+    "name": "Elizabeth",
+    "region": "Lira",
+    "gps_lat": 0.361914,
+    "gps_lon": 34.700778,
+    "crop_type": "coffee",
+    "farm_size_hectares": 4.5
+  },
+  {
+    "farmer_id": "FAR045",
+    "name": "Edward",
+    "region": "Kampala",
+    "gps_lat": 0.897826,
+    "gps_lon": 30.126666,
+    "crop_type": "cassava",
+    "farm_size_hectares": 1.32
+  },
+  {
+    "farmer_id": "FAR046",
+    "name": "Innocent",
+    "region": "Kabale",
+    "gps_lat": 3.545975,
+    "gps_lon": 31.927495,
+    "crop_type": "sorghum",
+    "farm_size_hectares": 2.8
+  },
+  {
+    "farmer_id": "FAR047",
+    "name": "Timothy",
+    "region": "Masaka",
+    "gps_lat": 0.961316,
+    "gps_lon": 33.618654,
+    "crop_type": "sorghum",
+    "farm_size_hectares": 3.17
+  },
+  {
+    "farmer_id": "FAR048",
+    "name": "Peace",
+    "region": "Masaka",
+    "gps_lat": -1.012208,
+    "gps_lon": 32.53174,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 3.37
+  },
+  {
+    "farmer_id": "FAR049",
+    "name": "Nicholas",
+    "region": "Masaka",
+    "gps_lat": 3.335236,
+    "gps_lon": 33.263348,
+    "crop_type": "groundnuts",
+    "farm_size_hectares": 3.22
+  },
+  {
+    "farmer_id": "FAR050",
+    "name": "Diana",
+    "region": "Soroti",
+    "gps_lat": 0.358097,
+    "gps_lon": 31.90697,
+    "crop_type": "beans",
+    "farm_size_hectares": 2.19
+  }
+]

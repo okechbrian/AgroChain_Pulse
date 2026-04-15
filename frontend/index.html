@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroChain Pulse Dashboard</title>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0a1628; color: #fff; }
+        
+        .header { background: linear-gradient(135deg, #1a3a5c 0%, #0d2137 100%); padding: 20px 40px; border-bottom: 2px solid #00d4aa; }
+        .header h1 { font-size: 28px; color: #00d4aa; display: flex; align-items: center; gap: 12px; }
+        .header p { color: #7a8fa3; margin-top: 5px; }
+        
+        .container { display: flex; height: calc(100vh - 100px); }
+        
+        .sidebar { width: 380px; background: #0d2137; padding: 20px; overflow-y: auto; border-right: 1px solid #1e3a5f; }
+        .sidebar h2 { color: #00d4aa; font-size: 18px; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid #1e3a5f; }
+        
+        .farmer-card { background: #152a45; border-radius: 12px; padding: 16px; margin-bottom: 16px; border: 1px solid #1e3a5f; transition: all 0.3s; }
+        .farmer-card:hover { border-color: #00d4aa; transform: translateY(-2px); }
+        .farmer-card.active { border-color: #00d4aa; box-shadow: 0 0 20px rgba(0, 212, 170, 0.2); }
+        
+        .farmer-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .farmer-name { font-weight: 600; font-size: 16px; }
+        .farmer-region { font-size: 12px; color: #7a8fa3; }
+        
+        .stat-row { display: flex; gap: 12px; margin-bottom: 8px; }
+        .stat { flex: 1; background: #0a1628; padding: 10px; border-radius: 8px; text-align: center; }
+        .stat-label { font-size: 10px; color: #7a8fa3; text-transform: uppercase; letter-spacing: 0.5px; }
+        .stat-value { font-size: 20px; font-weight: 700; margin-top: 4px; }
+        .stat-value.yps { color: #00d4aa; }
+        .stat-value.kwh { color: #f59e0b; }
+        
+        .token-status { font-size: 11px; padding: 4px 8px; border-radius: 4px; display: inline-block; }
+        .token-status.active { background: rgba(0, 212, 170, 0.2); color: #00d4aa; }
+        .token-status.expired { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        
+        .map-container { flex: 1; position: relative; }
+        #map { height: 100%; width: 100%; }
+        
+        .map-legend { position: absolute; bottom: 20px; right: 20px; background: #0d2137; padding: 15px; border-radius: 8px; z-index: 1000; border: 1px solid #1e3a5f; }
+        .map-legend h3 { font-size: 12px; color: #7a8fa3; margin-bottom: 10px; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 6px; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-dot.excellent { background: #00d4aa; }
+        .legend-dot.good { background: #22c55e; }
+        .legend-dot.fair { background: #f59e0b; }
+        .legend-dot.low { background: #ef4444; }
+        
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        
+        .demo-controls { position: absolute; top: 20px; right: 20px; z-index: 1000; display: flex; gap: 10px; }
+        .btn { background: #00d4aa; color: #0a1628; border: none; padding: 10px 16px; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+        .btn:hover { background: #00f5c4; transform: scale(1.05); }
+        .btn.secondary { background: #1e3a5f; color: #fff; }
+        .btn.secondary:hover { background: #2d4a6f; }
+        
+        .activity-log { margin-top: 20px; padding-top: 20px; border-top: 1px solid #1e3a5f; }
+        .activity-log h3 { font-size: 14px; color: #7a8fa3; margin-bottom: 12px; }
+        .log-entry { font-size: 12px; padding: 8px; background: #0a1628; border-radius: 6px; margin-bottom: 8px; border-left: 3px solid #00d4aa; }
+        .log-entry .time { color: #7a8fa3; font-size: 10px; }
+        
+        .leaflet-popup-content-wrapper { background: #0d2137; color: #fff; border-radius: 8px; }
+        .leaflet-popup-tip { background: #0d2137; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🌾 AgroChain Pulse Dashboard</h1>
+        <p>Real-time YPS Scores and Energy Credit Token Management</p>
+    </div>
+    
+    <div class="container">
+        <div class="sidebar">
+            <h2>👨‍🌾 Farmer Nodes</h2>
+            <div id="farmerCards"></div>
+            
+            <div class="activity-log">
+                <h3>📋 Recent Activity</h3>
+                <div id="activityLog"></div>
+            </div>
+        </div>
+        
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-legend">
+                <h3>YPS Score Range</h3>
+                <div class="legend-item"><div class="legend-dot excellent"></div> 800-1000 Excellent</div>
+                <div class="legend-item"><div class="legend-dot good"></div> 600-799 Good</div>
+                <div class="legend-item"><div class="legend-dot fair"></div> 400-599 Fair</div>
+                <div class="legend-item"><div class="legend-dot low"></div> 0-399 Low</div>
+            </div>
+            <div class="demo-controls">
+                <button class="btn" onclick="simulateNewReading()">📡 Simulate Sensor</button>
+                <button class="btn secondary" onclick="issueToken()">🎫 Issue Token</button>
+                <button class="btn secondary" onclick="redeemToken()">⚡ Redeem Energy</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const farmers = [
+            { id: 'FAR001', name: 'John Okello', region: 'Kampala', lat: 0.3476, lon: 32.5825, yps: 850, kwh: 50, crop: 'maize' },
+            { id: 'FAR002', name: 'Mary Akello', region: 'Mbarara', lat: -0.6067, lon: 30.6565, yps: 680, kwh: 30, crop: 'beans' },
+            { id: 'FAR003', name: 'Peter Opio', region: 'Gulu', lat: 2.7747, lon: 32.2995, yps: 420, kwh: 0, crop: 'cassava' }
+        ];
+
+        const map = L.map('map').setView([1.5, 32.5], 7);
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '© OpenStreetMap, © CARTO'
+        }).addTo(map);
+
+        const markers = {};
+        const colors = { excellent: '#00d4aa', good: '#22c55e', fair: '#f59e0b', low: '#ef4444' };
+
+        function getColor(yps) {
+            if (yps >= 800) return 'excellent';
+            if (yps >= 600) return 'good';
+            if (yps >= 400) return 'fair';
+            return 'low';
+        }
+
+        function renderFarmerCards() {
+            const container = document.getElementById('farmerCards');
+            container.innerHTML = farmers.map(f => {
+                const color = colors[getColor(f.yps)];
+                const status = f.kwh > 0 ? 'active' : 'expired';
+                const statusText = f.kwh > 0 ? 'Token Active' : 'No Token';
+                return `
+                    <div class="farmer-card" id="card-${f.id}">
+                        <div class="farmer-header">
+                            <div>
+                                <div class="farmer-name">${f.name}</div>
+                                <div class="farmer-region">${f.region} • ${f.crop}</div>
+                            </div>
+                            <span class="token-status ${status}">${statusText}</span>
+                        </div>
+                        <div class="stat-row">
+                            <div class="stat">
+                                <div class="stat-label">YPS Score</div>
+                                <div class="stat-value yps">${f.yps}</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-label">ECT Balance</div>
+                                <div class="stat-value kwh">${f.kwh} kWh</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function renderMarkers() {
+            farmers.forEach(f => {
+                const color = colors[getColor(f.yps)];
+                const circle = L.circleMarker([f.lat, f.lon], {
+                    radius: 15,
+                    fillColor: color,
+                    color: '#fff',
+                    weight: 2,
+                    opacity: 1,
+                    fillOpacity: 0.8
+                }).addTo(map);
+
+                circle.bindPopup(`
+                    <div style="min-width: 180px;">
+                        <h3 style="margin: 0 0 10px; color: ${color};">${f.name}</h3>
+                        <p style="margin: 4px 0;"><strong>Farmer ID:</strong> ${f.id}</p>
+                        <p style="margin: 4px 0;"><strong>Region:</strong> ${f.region}</p>
+                        <p style="margin: 4px 0;"><strong>YPS Score:</strong> <span style="color: ${color}; font-weight: bold;">${f.yps}</span></p>
+                        <p style="margin: 4px 0;"><strong>ECT Balance:</strong> ${f.kwh} kWh</p>
+                        <p style="margin: 4px 0;"><strong>Crop:</strong> ${f.crop}</p>
+                    </div>
+                `);
+
+                markers[f.id] = circle;
+            });
+        }
+
+        function addActivity(message) {
+            const log = document.getElementById('activityLog');
+            const time = new Date().toLocaleTimeString();
+            log.insertBefore(`<div class="log-entry">${message}<div class="time">${time}</div></div>`, log.firstChild);
+        }
+
+        function simulateNewReading() {
+            const farmer = farmers[Math.floor(Math.random() * farmers.length)];
+            const ypsChange = Math.floor(Math.random() * 40) - 20;
+            farmer.yps = Math.max(200, Math.min(1000, farmer.yps + ypsChange));
+            
+            updateFarmer(farmer);
+            addActivity(`Sensor reading for ${farmer.name}: YPS updated to ${farmer.yps}`);
+        }
+
+        function issueToken() {
+            const farmer = farmers.find(f => f.kwh === 0);
+            if (!farmer) {
+                addActivity('All farmers have active tokens!');
+                return;
+            }
+            
+            if (farmer.yps >= 800) farmer.kwh = 50;
+            else if (farmer.yps >= 600) farmer.kwh = 30;
+            else if (farmer.yps >= 400) farmer.kwh = 15;
+            else farmer.kwh = 5;
+            
+            updateFarmer(farmer);
+            addActivity(`Token issued to ${farmer.name}: ${farmer.kwh} kWh`);
+        }
+
+        function redeemToken() {
+            const farmer = farmers.find(f => f.kwh > 0);
+            if (!farmer) {
+                addActivity('No active tokens to redeem!');
+                return;
+            }
+            
+            farmer.kwh = 0;
+            updateFarmer(farmer);
+            addActivity(`${farmer.name} redeemed energy at pump node!`);
+        }
+
+        function updateFarmer(farmer) {
+            renderFarmerCards();
+            
+            const marker = markers[farmer.id];
+            const color = colors[getColor(farmer.yps)];
+            marker.setStyle({ fillColor: color });
+            marker.setRadius(18);
+            setTimeout(() => marker.setRadius(15), 300);
+        }
+
+        renderFarmerCards();
+        renderMarkers();
+        addActivity('Dashboard initialized');
+        addActivity('3 farmer nodes loaded');
+    </script>
+</body>
+</html>

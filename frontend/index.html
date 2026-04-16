@@ -103,6 +103,14 @@
     </div>
 
     <script>
+        console.log('Loading Leaflet...');
+        
+        // Check if Leaflet loaded
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+            console.error('Error:', msg, 'at line', lineNo);
+            return false;
+        };
+
         const farmers = [
             { id: 'FAR001', name: 'John Okello', region: 'Kampala', lat: 0.3476, lon: 32.5825, yps: 850, kwh: 50, crop: 'maize' },
             { id: 'FAR002', name: 'Mary Akello', region: 'Mbarara', lat: -0.6067, lon: 30.6565, yps: 680, kwh: 30, crop: 'beans' },
@@ -182,21 +190,29 @@
         }
 
         function addActivity(message) {
+            console.log('Activity:', message);
             const log = document.getElementById('activityLog');
+            if (!log) {
+                console.error('Activity log not found!');
+                return;
+            }
             const time = new Date().toLocaleTimeString();
             log.insertBefore(`<div class="log-entry">${message}<div class="time">${time}</div></div>`, log.firstChild);
         }
 
         function simulateNewReading() {
+            console.log('Simulate sensor clicked');
             const farmer = farmers[Math.floor(Math.random() * farmers.length)];
             const ypsChange = Math.floor(Math.random() * 40) - 20;
             farmer.yps = Math.max(200, Math.min(1000, farmer.yps + ypsChange));
             
+            console.log('Farmer:', farmer.name, 'New YPS:', farmer.yps);
             updateFarmer(farmer);
             addActivity(`Sensor reading for ${farmer.name}: YPS updated to ${farmer.yps}`);
         }
 
         function issueToken() {
+            console.log('Issue token clicked');
             const farmer = farmers.find(f => f.kwh === 0);
             if (!farmer) {
                 addActivity('All farmers have active tokens!');
@@ -208,11 +224,13 @@
             else if (farmer.yps >= 400) farmer.kwh = 15;
             else farmer.kwh = 5;
             
+            console.log('Issued token to:', farmer.name, 'kWh:', farmer.kwh);
             updateFarmer(farmer);
             addActivity(`Token issued to ${farmer.name}: ${farmer.kwh} kWh`);
         }
 
         function redeemToken() {
+            console.log('Redeem token clicked');
             const farmer = farmers.find(f => f.kwh > 0);
             if (!farmer) {
                 addActivity('No active tokens to redeem!');
@@ -220,24 +238,34 @@
             }
             
             farmer.kwh = 0;
+            console.log('Redeemed token for:', farmer.name);
             updateFarmer(farmer);
             addActivity(`${farmer.name} redeemed energy at pump node!`);
         }
 
         function updateFarmer(farmer) {
+            console.log('Updating farmer:', farmer.id);
             renderFarmerCards();
             
             const marker = markers[farmer.id];
-            const color = colors[getColor(farmer.yps)];
-            marker.setStyle({ fillColor: color });
-            marker.setRadius(18);
-            setTimeout(() => marker.setRadius(15), 300);
+            if (marker) {
+                const color = colors[getColor(farmer.yps)];
+                marker.setStyle({ fillColor: color });
+                marker.setRadius(18);
+                setTimeout(() => marker.setRadius(15), 300);
+            } else {
+                console.error('Marker not found for:', farmer.id);
+            }
         }
 
+        console.log('Initializing dashboard...');
         renderFarmerCards();
+        console.log('Farmer cards rendered');
         renderMarkers();
+        console.log('Markers rendered');
         addActivity('Dashboard initialized');
         addActivity('3 farmer nodes loaded');
+        console.log('Dashboard ready');
     </script>
 </body>
 </html>
